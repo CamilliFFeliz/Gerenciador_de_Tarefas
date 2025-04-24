@@ -1,3 +1,3 @@
 <footer>
-    <small>&copy;<?= date("Y")?> Todos os direitos reservados - Camilli | Matheus | Vitor</small>
+        &copy; 2025 - Camilli | Matheus | Vitor
 </footer>

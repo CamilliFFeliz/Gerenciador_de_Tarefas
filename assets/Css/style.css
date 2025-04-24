@@ -1,27 +1,459 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
+/* RESET GERAL
+   Remove margens e paddings padrão e ajusta box-sizing para evitar bugs no layout */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* CONFIGURAÇÃO DO CORPO
+     Define fonte principal, cor de fundo escura e cor de texto clara para melhor contraste visual */
+  html, body {
+    background-color: #0A0F2C;
     height: 100%;
-}
-
-.resumo {
+    margin: 0;
+    padding: 0;
     display: flex;
-    border: 2px solid blue;
-    border-radius: 20px;
-}
-
-.container {
-    border:2px solid #333;
-    margin: 15px;
-    padding: 10px;
-    border-radius: 20px;
-}
-
-footer {
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+  }
+  
+  /* HEADER
+     Cabeçalho da aplicação com alinhamento entre logo e navegação */
+  header {
+    background-color: #8c86bd;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+  }
+  nav a {
+    margin-left: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* CONTAINER DA PÁGINA INICIAL
+     Responsável por mostrar a imagem e os cards de forma flexível e responsiva */
+  .home-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+  }
+  
+  /* IMAGEM À ESQUERDA */
+  .image-container {
+    flex: 1 1 50%;
+    padding: 20px;
+  }
+  
+  .image-container img {
+    width: 100%; 
+    height: auto; 
     display: block;
+  }
+  
+  /* CONTÊINER DOS CARDS À DIREITA */
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; 
+    flex: 1 1 50%; 
+    box-sizing: border-box;
+  }
+  
+  /* ESTILO GERAL DOS CARDS */
+  .card {
+    background-color: #5b6099;
+    border-radius: 15px;
+    padding: 30px;
+    box-sizing: border-box;
+    width: calc(50% - 15px); 
+  }
+  
+  /* ESTILO DO HEADER DOS CARDS */
+  .card-header {
+    background-color: #8c86bd;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  /* O ÚLTIMO CARD: ocupa a linha inteira */
+  .card:nth-child(3) {
+    width: 100%; 
+  }
+  
+  /* ÁREA DE LOGIN/CADASTRO
+     Caixa centralizada com estilo consistente e acessível */
+  .login-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+  }
+  
+  .login-box {
+    background-color: #4c5183;
+    padding: 30px;
+    margin: 10px;
+  
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    gap: 15px;
+  }
+  .login-box input,
+  .login-box button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+  }
+  .login-box input {
+    background-color: #9b96cc;
+    color: white;
+  }
+  .login-box button {
+    background-color: #b3acd9;
+    cursor: pointer;
+  }
+  
+  /* ESPAÇO PARA ÁREA DE TAREFAS*/
+  .kanban-column {
+    background-color: #8c86bd;
+    padding: 20px;
+    margin: 50px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 0 0 250px;
+  }
+  
+  .kanban-column-header {
+    background-color: #b3acd9;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  /* BOTÃO DE ADIÇÃO DE TAREFA
+     Estilizado com feedback visual ao passar o mouse */
+  .add-task-btn {
+    background-color: #4c5183;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+  }
+  .add-task-btn:hover {
+    background-color: #3b3f6a;
+  }
+  
+  /* CARTÃO DE TAREFA
+     Layout flexível com campos editáveis para título, comentário e status */
+  .task-card {
+    background-color: #b3acd9;
+    padding: 15px;
+    border-radius: 10px;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .task-title,
+  .task-comment,
+  .task-status {
     width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+  .task-title {
+    background-color: #9b96cc;
+    color: white;
+  }
+  .task-comment {
+    background-color: #9b96cc;
+    color: white;
+    resize: vertical;
+    height: 60px;
+  }
+  .task-status {
+    background-color: #4c5183;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* BOTÃO DE EXCLUSÃO DE TAREFA
+     Vermelho para chamar atenção, com transição suave no hover */
+  .delete-task {
+    align-self: flex-end;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+  }
+  .delete-task:hover {
+    background-color: #c0392b;
+  }
+  
+  /* LISTA DE TAREFAS
+     Espaçamento interno entre tarefas */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Estilo visual da barra de rolagem horizontal no Webkit (Chrome, Edge, Safari) */
+  .kanban-container::-webkit-scrollbar {
+    height: 12px;
+  }
+  .kanban-container::-webkit-scrollbar-track {
+    background: #4c5183;
+    border-radius: 10px;
+  }
+  .kanban-container::-webkit-scrollbar-thumb {
+    background: #b3acd9;
+    border-radius: 10px;
+    border: 3px solid #4c5183;
+  }
+  .kanban-container::-webkit-scrollbar-thumb:hover {
+    background: #9b96cc;
+  }
+  
+  /* SIDEBAR DE AÇÕES
+     Barra lateral com botões de interação e um espaço reservado para a logo */
 
+/* FOOTER */
+footer {
+  background-color: #4c5183;
+  color: #e0dcff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.95rem;
+  border-top: 2px solid #8c86bd;
+  margin-top: 40px;
+  border-radius: 12px 12px 0 0;
+}
+
+
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* CORPO DA PÁGINA */
+body {
+  background-color: #0A0F2C;
+  color: #e0dcff;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* HEADER */
+header {
+  background-color: #8c86bd;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header .logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* IMAGEM ILUSTRATIVA */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 600px; /* Largura para telas maiores */
+  height: auto;
+  border-radius: 15px;
+}
+
+/* CONTAINER DOS CARDS E ÁREAS DE TEXTO */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background-color: #5b6099;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.card-header {
+  background-color: #8c86bd;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.card-content {
+  color: #e0dcff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* ÁREA DE LOGIN/CADASTRO */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.login-box {
+  background-color: #4c5183;
+  padding: 30px;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-box input,
+.login-box button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.login-box input {
+  background-color: #9b96cc;
+  color: white;
+}
+
+.login-box button {
+  background-color: #b3acd9;
+  color: white;
+  cursor: pointer;
+}
+
+/* FOOTER */
+  footer {
+  background-color: #4c5183;
+  color: #e0dcff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.95rem;
+  border-top: 2px solid #8c86bd;
+  margin-top: 40px;
+  border-radius: 12px 12px 0 0;
+}
+
+
+/* Responsividade para o Samsung A54 e telas menores */
+@media screen and (max-width: 411px) {
+  body {
+    padding: 10px;
+  }
+
+  header .logo {
+    font-size: 1.4rem;
+  }
+
+  .image-container img {
+    width: 90%; /* Ajuste para tela pequena */
+    max-width: 350px; /* Para não ultrapassar o tamanho da tela */
+  }
+
+  .card {
+    padding: 18px;
+    width: 100%;
+  }
+
+  .login-box {
+    max-width: 300px;
+    padding: 20px;
+  }
+
+/* Responsivo para telas menores */
+@media screen and (max-width: 411px) {
+  footer {
+    font-size: 0.85rem;
+    padding: 12px 8px;
+  }
+}
+
+/* Responsividade para telas maiores */
+@media screen and (min-width: 768px) {
+  /* Imagem centralizada e com max-width ajustado */
+  .image-container img {
+    max-width: 700px;
+  }
+
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .card {
+    width: calc(50% - 15px);
+  }
+
+  .login-container {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
 }

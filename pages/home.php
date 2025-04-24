@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!-- container bonito que o povo gosta de um ARRUMATIOOOOOOOOOOOOOOON -->
+<div class="home-container">
+    <div class="image-container">
+        <img src="./img/No-awateru.png" alt="Imagem ilustrativa">
+    </div>
+    <div class="cards-container">
+        <div class="card">
+            <div class="card-header">Gerencie Suas Tarefas</div>
+            <p>
+                Assuma o controle da sua rotina com um sistema intuitivo que te ajuda a organizar as atividades do seu
+                dia a dia.
+                Seja para projetos pessoais, trabalho em equipe ou estudos, aqui você consegue criar listas, dividir por
+                prioridades e manter tudo sob controle, sem estresse e sem papel espalhado pela mesa.
+            </p>
+        </div>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./css/style.css">
-	<title>Gerenciador de Tarefas</title>
+        <div class="card">
+            <div class="card-header">Tenha Controle Total</div>
+            <p>
+                Com apenas alguns cliques, você adiciona tarefas, edita informações, define prazos e marca como
+                concluídas com facilidade.
+                Nosso sistema foi pensado para ser prático e eficiente, oferecendo autonomia total para que você
+                gerencie sua produtividade do seu jeito, sem complicação e com toda a flexibilidade que sua rotina
+                precisa.
+            </p>
+        </div>
 
-</head>
-
-<body>
-
-	<?php
-	require_once "./header.php";
-	echo "</header>";
-
-	echo "<main>";
-	?>
-</body>
-
-<section class="resumo">
-	<div class="container"> 
-		<h1>Descrição</h1>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, ab non. Placeat a, reprehenderit, nesciunt eius magni minima eaque distinctio provident quo repellat corrupti velit at voluptas et. Nam, sed.
-		Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quod repellat quia, ut quaerat voluptatibus officia maxime consequatur. Illum enim rerum blanditiis, hic temporibus rem molestiae vel accusamus quam quae.
-		</p>
-	</div>
-
-	<div class="container"> 
-		<h1>Sobre</h1>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, possimus sapiente? Aliquam adipisci sed rerum soluta, porro a totam, corrupti exercitationem dolor eaque quas voluptas consequuntur qui cupiditate voluptatibus animi.</p>
-	</div>
-	
-	<div class="container"> 
-		<h1>Curiosidades</h1>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facere a officiis esse? Optio, id temporibus? Accusantium aperiam ipsum animi, quidem qui iure odio ullam ducimus consequatur, unde, vero corporis.</p>
-	</div>
-</section>
-
-<?php
-echo "</main>";
-require_once "./footer.php";
-?>
-</body>
-
-</html>
+        <div class="card">
+            <div class="card-header">Acompanhe Seu Progresso</div>
+            <p>
+                Visualize seu avanço em tempo real com um layout claro e organizado inspirado nas melhores práticas do
+                método Kanban.
+                Veja o que já foi concluído, o que está em andamento e o que ainda precisa da sua atenção. Uma forma
+                leve, visual e motivadora de manter o foco e celebrar cada pequena conquista.
+            </p>
+        </div>
+    </div>
+</div>
