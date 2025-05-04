@@ -1,5 +1,5 @@
 <?php
-$page = $_GET["page"] ?? "home" ;
+$page = $_GET["page"] ?? "home";
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +22,7 @@ $page = $_GET["page"] ?? "home" ;
 	require_once (match($page){
 		"home" => "./pages/home.php",
 		"login" => "./pages/login.php",
+		"registrar" => "./pages/registrar.php",
 		"tarefas"=> "./pages/tarefas.php",
 		default => "./pages/404.php",
 	});
