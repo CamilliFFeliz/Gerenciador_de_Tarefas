@@ -1,5 +1,5 @@
 <?php
-// Camilli Frigeri Feliz - 37280571 | Mathes Müller dos Santos - 83693500 | Vitor Manoel Rodrigues Carvalho - 38724626
+// Nome dos participantes: Mathes Müller dos Santos - 83693500 | Camilli Frigeri Feliz - 37280571 | Vitor Manoel Rodrigues Carvalho - 38724626
 $page = $_GET["page"] ?? "home";
 ?>
 
