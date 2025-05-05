@@ -9,6 +9,7 @@ $page = $_GET["page"] ?? "home";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="icon" href="./img/No_awateru.png" type="image/x-icon">
     <title>NO! Awateru</title>
 </head>
 

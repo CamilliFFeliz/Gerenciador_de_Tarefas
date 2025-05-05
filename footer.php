@@ -1,3 +1,5 @@
 <footer>
-        &copy; 2025 - Camilli | Matheus | Vitor
+    <small>&copy; <?php echo date("Y"); 
+        ?> Todos os direitos reservados <br> Camilli | Matheus | Vitor
+    </small>
 </footer>

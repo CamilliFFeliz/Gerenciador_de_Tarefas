@@ -24,6 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input id="senha" name="senha" type="password" placeholder="Senha">
             <input type="submit" value="Entrar">
         </form>
-        <a href="?page=registrar">Registrar</a>
+            <a href="?page=registrar">Registrar</a>
     </div>
 </div>
