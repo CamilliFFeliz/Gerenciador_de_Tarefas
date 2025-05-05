@@ -197,7 +197,7 @@ nav a {
 }
 
 .gerenciador {
-  flex: 2 1 60%; 
+  flex: 2 1 50%; 
   padding: 20px;
   background-color: #5b6099;
   border-radius: 12px;
@@ -237,9 +237,20 @@ th {
   font-weight: bold;
 }
 
+th:nth-child(1), td:nth-child(1),th:nth-child(2), td:nth-child(2),th:nth-child(3), td:nth-child(3) {
+  width: 100px; 
+}
+
+th:nth-child(4), td:nth-child(4),th:nth-child(5), td:nth-child(5) {
+  width: 180px; 
+}
+
 td {
   background-color: #4c5183;
   color: white;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
 td p {
