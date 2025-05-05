@@ -14,16 +14,15 @@ $admin = [
     "senha" => "1234",
 ];
 
-// Verifica se o cookie "usuarios" já existe
 if (!isset($_COOKIE["usuarios"])) {
-    // Se não existir, cria o array com o admin e define o cookie
+
     $usuarios = [$admin];
     setcookie("usuarios", json_encode($usuarios), 0, "/");
 } else {
-    // Se já existir, carrega os usuários existentes
+
     $usuarios = json_decode($_COOKIE["usuarios"], true);
 
-    // Verifica se o admin já está no array
+
     $adminExists = false;
     foreach ($usuarios as $usuario) {
         if ($usuario["email"] === $admin["email"]) {
@@ -32,11 +31,18 @@ if (!isset($_COOKIE["usuarios"])) {
         }
     }
 
-    // Se o admin não estiver no array, adiciona
     if (!$adminExists) {
         $usuarios[] = $admin;
         setcookie("usuarios", json_encode($usuarios),  0, "/");
     }
+}
+
+if (!isset($_COOKIE["tarefas"])) {
+    setcookie("tarefas", json_encode([]), 0, "/");
+}
+
+if (!isset($_COOKIE["comentarios"])) {
+    setcookie("comentarios", json_encode([]), 0, "/");
 }
 
 function Registrar($nome, $email, $senha): bool
@@ -117,8 +123,7 @@ function criarTarefa($titulo, $descricao, $dataLimite, $responsavel, $status = "
             "dataCriacao" => date("Y-m-d H:i:s"),
         ];
 
-
-        $tarefas = json_decode($_COOKIE["tarefas"],true)??[];
+        $tarefas = json_decode($_COOKIE["tarefas"], true) ?? [];
         array_push($tarefas, $tarefa);
 
         $tarefasJson = json_encode($tarefas);
@@ -132,9 +137,9 @@ function criarTarefa($titulo, $descricao, $dataLimite, $responsavel, $status = "
 
 function listarTarefas($idResponsavel = null, $status = null, $dataLimite = null): array
 {
-    $tarefas = json_decode($_COOKIE["tarefas"], true);
+    $tarefas = json_decode($_COOKIE["tarefas"], true) ?? [];
 
-    // Filtra as tarefas com base nos parâmetros fornecidos
+
     $tarefasFiltradas = array_filter($tarefas, function ($tarefa) use ($idResponsavel, $status, $dataLimite) {
         return ($idResponsavel === null || $tarefa["idResponsavel"] == $idResponsavel) &&
             ($status === null || $tarefa["status"] == $status) &&
@@ -144,7 +149,7 @@ function listarTarefas($idResponsavel = null, $status = null, $dataLimite = null
     return $tarefasFiltradas;
 }
 
-function DeletarTarefa($idTarefa): bool
+function deletarTarefa($idTarefa): bool
 {
     if (isset($idTarefa)) {
         $tarefas = json_decode($_COOKIE["tarefas"], true);
@@ -180,13 +185,19 @@ function ListarComentarios($idTarefa): array
 {
     $comentariosTarefa = [];
     if (isset($idTarefa)) {
-        $comentarios = json_decode($_COOKIE["comentarios"], true);
+        $comentarios = json_decode($_COOKIE["comentarios"], true) ?? [];
         foreach ($comentarios as $comentario) {
             if ($comentario["idTarefa"] == $idTarefa) {
                 $comentariosTarefa[] = $comentario;
             }
         }
-    } 
+    }
 
     return  $comentariosTarefa;
+}
+
+function ContarComentarios($idTarefa): int
+{
+    $comentarios = ListarComentarios($idTarefa);
+    return count($comentarios);
 }

@@ -2,19 +2,25 @@
 include "./database/db.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $titulo = $_POST["titulo"] ?? null;
     $idResponsavel = $_POST["idResponsavel"] ?? null;
     $descricao = $_POST["descricao"] ?? null;
     $dataLimite = $_POST["dataLimite"] ?? null;
     $status = $_POST["status"] ?? null;
-    
 
-    $resultado = criarTarefa($titulo, $descricao, $dataLimite, $idResponsavel, $status);
-    if ($resultado) {
-        echo "<script>alert('Tarefa criada com sucesso!');</script>";
-    } else {
-        echo "<script>alert('Erro ao criar tarefa.');</script>";
+    if (isset($titulo, $idResponsavel, $descricao, $dataLimite, $status)) {
+        $resultado = criarTarefa($titulo, $descricao, $dataLimite, $idResponsavel, $status);
+        if ($resultado) {
+            echo "<script>alert('Tarefa criada com sucesso!');</script>";
+            unset($_POST["titulo"], $_POST["idResponsavel"], $_POST["descricao"], $_POST["dataLimite"], $_POST["status"]);
+            unset($titulo, $idResponsavel, $descricao, $dataLimite, $status);
+        } else {
+            echo "<script>alert('Erro ao criar tarefa.');</script>";
+        }
     }
+
+    header("Location: " . $_SERVER["REQUEST_URI"]);
 }
 ?>
 
@@ -35,18 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <tbody>
                 <?php
                 $tarefas = listarTarefas(null, null, null);
-                if (isset($tarefas)) {
+                if (!empty($tarefas)) {
                     foreach ($tarefas as $tarefa) {
                         echo "<tr>";
                         echo "<td>{$tarefa['titulo']}</td>";
-                        echo "<td>{$tarefa['dataLimite']}</td>";
+                        echo "<td>{$tarefa['idResponsavel']}</td>";
                         echo "<td>{$tarefa['status']}</td>";
                         echo "<td>{$tarefa['descricao']}</td>";
-                        echo "<td>{$tarefa['idResponsavel']}</td>";
-                        echo "<td>";
-                        
-                        echo "<button>comentarios</button>";
-                        echo "</td>";
+                        echo "<td>{$tarefa['dataLimite']}</td>";
+                        echo "<td>" . ContarComentarios($tarefa['id']) . "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -57,12 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </table>
     </div>
 
+    <button type="submit"></button>
     <div class="criar-tarefa">
         <h3>Gerenciador de Tarefas</h3>
         <form action="" method="POST">
             <input type="text" name="titulo" id="titulo" placeholder="Título da Tarefa" required><br>
             <input type="text" name="descricao" id="descricao" placeholder="Descrição da Tarefa" required><br>
-            
+
 
             <label for="idResponsavel">Responsável:</label><br>
             <select name="idResponsavel" id="idResponsavel" required>
@@ -76,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 ?>
             </select><br>
-
+            <label for="dataLimite">Data Limite:</label><br>
             <input type="date" name="dataLimite" id="data" placeholder="Data Limite"><br>
 
             <label for="status">Status:</label><br>
@@ -86,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="Em Andamento">Em Andamento</option>
                 <option value="Concluída">Concluída</option>
             </select><br>
-            
+
             <button type="submit" class="botao-criar">Criar Tarefa</button>
         </form>
     </div>

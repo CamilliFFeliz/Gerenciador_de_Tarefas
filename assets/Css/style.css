@@ -197,7 +197,7 @@ nav a {
 }
 
 .gerenciador {
-  flex: 2 1 60%; /* Isso faz a div "gerenciador" ocupar mais espaço */
+  flex: 2 1 60%; 
   padding: 20px;
   background-color: #5b6099;
   border-radius: 12px;
@@ -206,7 +206,7 @@ nav a {
 }
 
 .criar-tarefa {
-  flex: 1 1 35%; /* Isso faz a div "criar-tarefa" ocupar menos espaço */
+  flex: 1 1 35%; 
   padding: 20px;
   background-color: #5b6099;
   border-radius: 12px;
