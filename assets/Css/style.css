@@ -223,17 +223,27 @@ nav a {
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 th, td {
   padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 th {
   background-color: #8c86bd;
   color: white;
+  font-weight: bold;
+}
+
+td {
+  background-color: #4c5183;
+  color: white;
+}
+
+td p {
+  margin: 5px 0;
 }
 
 td a {
@@ -244,6 +254,21 @@ td a {
 td a:hover {
   text-decoration: underline;
 }
+
+tr:nth-child(even) td {
+  background-color: #4c5183;
+}
+
+tr:hover td {
+  background-color: #b3acd9; 
+}
+td[colspan="6"] {
+  text-align: center;
+  background-color: #4c5183;
+  font-style: italic;
+  color: #ccc;
+}
+
 
 .criar-tarefa label {
   color: #fff;

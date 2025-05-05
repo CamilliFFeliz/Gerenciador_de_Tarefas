@@ -5,7 +5,7 @@
     </div>
     <div class="cards-container">
         <div class="card">
-            <div class="card-header">Gerencie Suas Tarefas</div>
+            <div class="card-header">Gerencie Suas Tarefas  </div>
             <p>
                 Assuma o controle da sua rotina com um sistema intuitivo que te ajuda a organizar as atividades do seu
                 dia a dia.
