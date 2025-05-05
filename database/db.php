@@ -106,7 +106,7 @@ function GetUsuario($idUsuario)
 
 function criarTarefa($titulo, $descricao, $dataLimite, $responsavel, $status = "pendente"): bool
 {
-    if (isset($tarefa, $titulo, $descricao, $dataLimite, $responsavel)) {
+    if (isset($titulo, $descricao, $dataLimite, $responsavel)) {
         $tarefa = [
             "id" => rand(1, 1000),
             "idResponsavel" => $responsavel,
@@ -118,7 +118,7 @@ function criarTarefa($titulo, $descricao, $dataLimite, $responsavel, $status = "
         ];
 
 
-        $tarefas = json_decode($_COOKIE["tarefas"], true);
+        $tarefas = json_decode($_COOKIE["tarefas"],true)??[];
         array_push($tarefas, $tarefa);
 
         $tarefasJson = json_encode($tarefas);

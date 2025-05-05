@@ -3,13 +3,13 @@ include "./database/db.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $_POST["titulo"] ?? null;
-    $responsavel = $_POST["responsavel"] ?? null;
+    $idResponsavel = $_POST["idResponsavel"] ?? null;
     $descricao = $_POST["descricao"] ?? null;
     $dataLimite = $_POST["dataLimite"] ?? null;
     $status = $_POST["status"] ?? null;
-    $comentario = $_POST["comentario"] ?? null;
+    
 
-    $resultado = criarTarefa($titulo, $comentario, $responsavel, $dataLimite, $status);
+    $resultado = criarTarefa($titulo, $descricao, $dataLimite, $idResponsavel, $status);
     if ($resultado) {
         echo "<script>alert('Tarefa criada com sucesso!');</script>";
     } else {
@@ -34,22 +34,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </thead>
             <tbody>
                 <?php
-                if (isset($_SESSION['tarefas'])) {
-                    foreach ($_SESSION['tarefas'] as $tarefa) {
+                $tarefas = listarTarefas(null, null, null);
+                if (isset($tarefas)) {
+                    foreach ($tarefas as $tarefa) {
                         echo "<tr>";
                         echo "<td>{$tarefa['titulo']}</td>";
-                        echo "<td>{$tarefa['responsavel']}</td>";
+                        echo "<td>{$tarefa['dataLimite']}</td>";
                         echo "<td>{$tarefa['status']}</td>";
                         echo "<td>{$tarefa['descricao']}</td>";
-                        echo "<td>{$tarefa['dataLimite']}</td>";
+                        echo "<td>{$tarefa['idResponsavel']}</td>";
                         echo "<td>";
-                        if (!empty($tarefa['comentarios'])) {
-                            foreach ($tarefa['comentarios'] as $comentario) {
-                                echo "<p><strong>{$comentario['usuario']}:</strong> {$comentario['comentario']}</p>";
-                            }
-                        } else {
-                            echo "<p>Sem comentários</p>";
-                        }
+                        
+                        echo "<button>comentarios</button>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -66,10 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="" method="POST">
             <input type="text" name="titulo" id="titulo" placeholder="Título da Tarefa" required><br>
             <input type="text" name="descricao" id="descricao" placeholder="Descrição da Tarefa" required><br>
-            <input type="text" name="comentario" id="comentario" placeholder="Comentário/Descrição"><br>
+            
 
-            <label for="responsavel">Responsável:</label><br>
-            <select name="responsavel" id="responsavel" required>
+            <label for="idResponsavel">Responsável:</label><br>
+            <select name="idResponsavel" id="idResponsavel" required>
                 <option value="">Selecione o responsável</option>
                 <?php
                 if (isset($_COOKIE['usuarios'])) {
