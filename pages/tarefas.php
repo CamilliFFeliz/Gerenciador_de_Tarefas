@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select><br>
 
-            <input type="date" name="dataLimite" id="data"><br>
+            <input type="date" name="dataLimite" id="data" placeholder="Data Limite"><br>
 
             <label for="status">Status:</label><br>
             <select name="status" id="status" required>
