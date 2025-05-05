@@ -1,6 +1,6 @@
 <?php
 session_start([
-    'name' => "idLogado",
+    'name' => "session",
     'cookie_lifetime' => 60 * 60 * 24,
     'cookie_path' => '/',
     'cookie_secure' => false,
@@ -81,7 +81,6 @@ function Login($email, $senha): bool
         foreach ($usuarios as $usuario) {
 
             if ($usuario["email"] == $email && $usuario["senha"] == $senha) {
-                $_SESSION["idLogado"] = $usuario["id"];
                 return true;
             }
         }
@@ -92,8 +91,8 @@ function Login($email, $senha): bool
 
 function Logout(): bool
 {
-    if (isset($_SESSION["idLogado"])) {
-        unset($_SESSION["idLogado"]);
+    if (isset($_SESSION["session"])) {
+        unset($_SESSION["session"]);
         session_destroy();
         return true;
     }
@@ -173,7 +172,7 @@ function criarComentario($idTarefa, $comentario)
         $comentario = [
             "id" => rand(1, 100),
             "idTarefa" => $idTarefa,
-            "Idusuario" => $_SESSION["idLogado"],
+            "Idusuario" => $_SESSION["session"],
             "comentario" => $comentario,
             "data" => date("Y-m-d H:i:s"),
 
